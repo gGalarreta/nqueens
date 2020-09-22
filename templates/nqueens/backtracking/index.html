@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+        table.chessboard {
+          margin: 80px auto;
+          background: #999;
+          border: 25px solid #333;
+          border-collapse: collapse; /* */
+        }
+        td.chessboard {
+          width: 70px; height: 70px;
+          border: 2px solid #333; /* */
+        }
+        tr.chessboard:nth-child(odd) td.chessboard:nth-child(even),
+        tr.chessboard:nth-child(even) td.chessboard:nth-child(odd) {
+          background: white;
+        }
+</style>
+</head>
+<body>
+
+  {% for solution in solutions %}
+    <table class="chessboard">
+      {% for row in range(size_board) %}
+        <tr class="chessboard">
+        {% for col in range(size_board)%}
+          {% if solution[col] == row %}
+            <td class="chessboard">
+                <img src="/static/queen.png" alt="" style="width:200px; height:auto;">
+            </td>
+          {% else %}
+            <td class="chessboard"></td>
+          {% endif%}
+        {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  {% endfor %}
+
+</body>
+</html>
