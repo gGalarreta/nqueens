@@ -1,4 +1,23 @@
-from tests.configuration_test import *
+from services.algorithm.backtracking import Backtracking
+import pytest
+
+@pytest.fixture(scope='module')
+def valid_backtracking_instance():
+  board_size = 4
+  vector = [-1] * board_size
+  return Backtracking(vector, board_size)
+
+@pytest.fixture(scope='module')
+def invalid_backtracking_instance():
+  board_size = -4
+  vector = [-1] * board_size
+  return Backtracking(vector, board_size)
+
+@pytest.fixture(scope='module')
+def valid_eigh_backtracking_instance():
+  board_size = 8
+  vector = [-1] * board_size
+  return Backtracking(vector, board_size)
 
 def test_call_method(valid_backtracking_instance, invalid_backtracking_instance):
   assert valid_backtracking_instance.call() is True

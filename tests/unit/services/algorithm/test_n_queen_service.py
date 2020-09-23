@@ -1,4 +1,31 @@
-from tests.configuration_test import *
+from services.algorithm.n_queen_service import NQueenService
+import pytest
+
+@pytest.fixture(scope='module')
+def valid_n_queen_service():
+  board_size = 4
+  return NQueenService(board_size, board_size)
+
+@pytest.fixture(scope='module')
+def invalid_negatives_size_n_queen_service():
+  board_size = -4
+  return NQueenService(board_size, board_size)
+
+@pytest.fixture(scope='module')
+def invalid_range_n_queen_service():
+  minimum_board_size = 10
+  maximum_board_size = 2
+  return NQueenService(minimum_board_size, maximum_board_size)
+
+@pytest.fixture(scope='module')
+def valid_four_queen_service():
+  board_size = 4
+  return NQueenService(board_size, board_size)
+
+@pytest.fixture(scope='module')
+def valid_eigh_queen_service():
+  board_size = 8
+  return NQueenService(board_size, board_size)
 
 def test_play_method(valid_n_queen_service, invalid_negatives_size_n_queen_service, invalid_range_n_queen_service):
   assert valid_n_queen_service.play() is True
