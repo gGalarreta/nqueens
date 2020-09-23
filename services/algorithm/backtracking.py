@@ -8,7 +8,13 @@ class Backtracking():
     self.__solutions = []
 
   def call(self):
-    self.__n_queen(self.__vector, 0)
+    try:
+      if self.__board_size < 1: return False
+
+      self.__n_queen(self.__vector, 0)
+    except:
+      return False
+    return True
 
   def solution(self):
     return self.__solutions

@@ -13,6 +13,7 @@ class NQueen(db.Model):
       n_queen_solution = NQueenSolution(value=value_to_string, owner=self)
       db.session.add(n_queen_solution)
       db.session.commit()
+    return True
 
   @classmethod
   def create(cls, **kw):

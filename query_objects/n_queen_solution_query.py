@@ -4,4 +4,4 @@ class NQueenSolutionQuery():
 
   @classmethod
   def find_board_solutions(cls, board_id):
-    return NQueenSolution.query.filter_by(owner_id=1)
+    return NQueenSolution.query.filter_by(owner_id=board_id)

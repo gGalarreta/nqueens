@@ -11,40 +11,29 @@ class NQueenService():
     self.__maxium_board_size = maximum_board_size
 
   def play(self):
-    for board in range(self.__minium_board_size, self.__maxium_board_size + 1):
-      board_solution = NQueenQuery.find_board(board)
-      if board_solution:
-        self.__solutions[board] = self.__find_board_solutions(board_solution.id)
-        return True
+    if self.__valid_board() is not True: return False
 
-      n_queen_backtracking = Backtracking(self.__init_vector(board), board)
-      n_queen_backtracking.call()
-      n_queen = NQueen.create(board_size=board, algorithm_name='backtracking')
-      n_queen.build_nqueen_solutions(n_queen_backtracking.solution())
-      self.__solutions[board] = n_queen_backtracking.solution()
+    try:
+      for board in range(self.__minium_board_size, self.__maxium_board_size + 1):
+        board_solution = NQueenQuery.find_board(board)
+        if board_solution:
+          self.__solutions[board] = self.__find_board_solutions(board_solution.id)
+          return True
+
+        n_queen_backtracking = Backtracking(self.__init_vector(board), board)
+        n_queen_backtracking.call()
+        n_queen = NQueen.create(board_size=board, algorithm_name='backtracking')
+        n_queen.build_nqueen_solutions(n_queen_backtracking.solution())
+        self.__solutions[board] = n_queen_backtracking.solution()
+    except:
+      return False
+    return True
 
   def solutions(self):
     return self.__solutions
 
-  def print_board_console(self):
-    for board_size in range(self.__minium_board_size, self.__maxium_board_size + 1):
-      for solution in self.__solutions[board_size]:
-        self.__print_board(solution, board_size)
-
   def __init_vector(self, board_size):
     return [DEFAULT_VECTOR_VALUE] * board_size
-
-  def __print_board(self, board, board_size):
-    print("BOARD %s" % board_size)
-    printed_board = ""
-    for row in range(board_size):
-      for col in range(board_size):
-        if board[col] == row:
-          printed_board += QUEEN_CHAR
-        else:
-          printed_board += EMPTY_CHAR
-      printed_board += "\n"
-    print(printed_board)
 
   def __find_board_solutions(self, board_id):
     result = []
@@ -53,4 +42,7 @@ class NQueenService():
       result.append(list(map(lambda x: int(x), value)))
     return result
 
-
+  def __valid_board(self):
+    return self.__minium_board_size > 1 and \
+      self.__maxium_board_size > 1 and \
+      self.__minium_board_size <= self.__maxium_board_size
