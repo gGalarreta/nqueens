@@ -1,13 +1,3 @@
-from models.n_queen import NQueen, NQueenSolution
-import pytest
-
-@pytest.fixture(scope='module')
-def new_n_queen():
-  return NQueen.create(board_size=4, algorithm_name='backtracking')
-
-@pytest.fixture(scope='module')
-def new_n_queen_solution():
-  return NQueenSolution(value='1,3,0,2', owner=new_n_queen())
 
 def test_new_n_queen(new_n_queen):
   assert isinstance(new_n_queen.board_size, str)
