@@ -6,10 +6,16 @@ from services.algorithm.n_queen_service import NQueenService
 def home():
   return render_template('home.html')
 
-@app.route('/nqueens/backtraking/<size>')
+@app.route('/nqueens/backtraking/<int:size>')
 def n_queens_backtracking(size):
-  size = int(size)
   n_queen_service_object = NQueenService(size, size)
   n_queen_service_object.play()
   solutions = n_queen_service_object.solutions()
   return render_template('nqueens/backtracking/index.html', solutions = solutions[size], size_board = size)
+
+@app.route('/nqueens/backtraking/range_solution/<int:minimum_size>/<int:maximum_size>')
+def n_queens_backtracking_full_range_solution(minimum_size, maximum_size):
+  n_queen_service_object = NQueenService(minimum_size, maximum_size)
+  n_queen_service_object.play()
+  solutions = n_queen_service_object.solutions()
+  return render_template('nqueens/backtracking/range_solution.html', solutions = solutions, minimum_size_board = minimum_size, maximum_size_board = maximum_size + 1)

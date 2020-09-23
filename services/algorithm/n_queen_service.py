@@ -18,7 +18,7 @@ class NQueenService():
         board_solution = NQueenQuery.find_board(board)
         if board_solution:
           self.__solutions[board] = self.__find_board_solutions(board_solution.id)
-          return True
+          if board == self.__maxium_board_size + 1 : return True
 
         n_queen_backtracking = Backtracking(self.__init_vector(board), board)
         n_queen_backtracking.call()
