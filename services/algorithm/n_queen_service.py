@@ -22,7 +22,7 @@ class NQueenService():
 
         n_queen_backtracking = Backtracking(self.__init_vector(board), board)
         n_queen_backtracking.call()
-        n_queen = NQueen.create(board_size=board, algorithm_name='backtracking')
+        n_queen = NQueen.create(board_size=str(board), algorithm_name='backtracking')
         n_queen.build_nqueen_solutions(n_queen_backtracking.solution())
         self.__solutions[board] = n_queen_backtracking.solution()
     except:

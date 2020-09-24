@@ -1,12 +1,22 @@
-FROM alpine:3.10
+FROM python:3.8-alpine
 
-RUN apk add --no-cache python3-dev \
-    && pip3 install --upgrade pip
+RUN apk update && \
+    apk add --no-cache --virtual build-deps gcc python3-dev musl-dev && \
+    apk add postgresql-dev
 
 WORKDIR /app
 
+ENV FLASK_APP app.py
+
 COPY . /app
 
-RUN pip3 --no-cache-dir install -r requirements.txt
+RUN pip --no-cache-dir install -r requirements.txt
 
-CMD ["python3", "app.py"]
+# DB migrations
+RUN chmod +x app.py
+
+# Make Entrypoint executable
+RUN chmod +x /app/docker-entrypoint.sh
+
+# CMD ["python3", "app.py"]
+CMD ["/bin/sh", "/app/docker-entrypoint.sh"]
