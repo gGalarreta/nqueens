@@ -38,6 +38,7 @@
       </header>
 
   {% for size_board in range(minimum_size_board, maximum_size_board) %}
+    <h1>{{solutions[size_board]|length}} Queen solutions for {{ size_board }} </h1>
     {% for solution in solutions[size_board] %}
       <table class="chessboard">
         {% for row in range(size_board) %}
