@@ -9,7 +9,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/cuenca-test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SECRET_KEY')
 
 db = SQLAlchemy(app)
 import models.n_queen

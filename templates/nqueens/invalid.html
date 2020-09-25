@@ -35,27 +35,8 @@
   <a href="/" class="w3-bar-item w3-button">Home</a>
   <!-- Header -->
   <header class="w3-panel w3-center w3-opacity" style="padding:128px 16px">
-    <h1 class="w3-xlarge">{{ size_board }} Queens puzzle</h1>
-    <h1>Gustavo Galarreta</h1>
+    <h1 class="w3-xlarge">Ocurrio un error</h1>
   </header>
-
-  {% for solution in solutions %}
-    <table class="chessboard">
-      {% for row in range(size_board) %}
-        <tr class="chessboard">
-        {% for col in range(size_board)%}
-          {% if solution[col] == row %}
-            <td class="chessboard">
-                <img src="/static/queen.png" alt="" style="width:200px; height:auto;">
-            </td>
-          {% else %}
-            <td class="chessboard"></td>
-          {% endif%}
-        {% endfor %}
-        </tr>
-      {% endfor %}
-    </table>
-  {% endfor %}
 
   <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
       <p>Powered by <a href="https://github.com/gGalarreta/nqueens/tree/master" target="_blank" class="w3-hover-text-green">Gustavo Galarreta GitHub</a></p>

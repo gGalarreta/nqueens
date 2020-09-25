@@ -16,3 +16,9 @@ services:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: userpass
       POSTGRES_DB: nqueendb
+
+#for this test, a volume is not need to create a new db each build and up
+# volumes:
+# - postgres:/var/lib/postgresql/data
+#volumes:
+# postgres: {}
